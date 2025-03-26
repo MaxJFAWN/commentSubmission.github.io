@@ -1,3 +1,4 @@
+document.addEventListener('DOMContentLoaded', function(){
 // Password
 document.getElementById('submissionForm').addEventListener("submit", function(event) {
   const password = document.getElementById('password').value;
@@ -38,6 +39,7 @@ document.getElementById('name').addEventListener('input', function() {
 
 // password
 document.getElementById('password').addEventListener("input", function() {
+
     let password = this.value;
 
     const missing = [];
@@ -100,7 +102,7 @@ function escapeHTMLInput(input) {
 
 function displayComment(event) {
     event.preventDefault();
-    let userInput = document.getElementById("userInput").value;
+    let userInput = document.getElementById("comment").value;
     let commentDiv = document.getElementById("comments");
 
     let newComment = document.createElement("p");
@@ -114,14 +116,14 @@ function displayComment(event) {
 document.getElementById('username').addEventListener('input', function() {
    const username = this.value;
    const message = document.getElementById('usernameMessage');
-   const need = /^[a-zA-Z0-9_]{4, 20}$/;
+   const need = /^[a-zA-Z0-9_]{4,8}$/;
 
    if (need.test(username)) {
        message.textContent = "Valid";
        message.style.color = "green";
    }
    else {
-       message.textContent = "Invalid: Username 4-20 characters (letters, numbers, & underscores)";
+       message.textContent = "Invalid: Username 4-8 characters (letters, numbers, & underscores)";
        message.style.color = "red";
    }
 });
@@ -142,5 +144,10 @@ document.getElementById('submissionForm').addEventListener('submit', function (e
         comment: escapeHTMLInput(comment),
         username: escapeHTMLInput(username),
         password: escapeHTMLInput(password)
+    }
+
+    });
+
+
 
 });

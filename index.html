@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Comment Submission Form</title>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     
 
 </head>
 	<body>
 		<h1>Comment Submission Form</h1>
-		<form id="submissionForm" action="process.php" method="post" onsubmit="displayComment(event)">
+		<form id="submissionForm" onsubmit="displayComment(event)" action="process.php" method="post" >
             <label for="name">Name: </label>
             <input id="name"
                    type="text"
                    pattern="[A-Za-z ]+"
                    title="Only letters and spaces are allowed"
-                   placeholder="John Doe">
+                   placeholder="John Doe"
+                   required>
             <br>
             <p id="nameMessage"></p>
             <br><br>
@@ -26,7 +27,8 @@
                     pattern="[0-9]{10}"
                     title="Enter a 10-digit phone number"
                     type="tel"
-                    placeholder="xxxxxxxxxx">
+                    placeholder="xxxxxxxxxx"
+                    required>
 
             <br><br>
 
@@ -35,7 +37,8 @@
                    name="userEmail"
                    type="email"
                    autocomplete="email"
-                   placeholder="yourEmail@email.com">
+                   placeholder="yourEmail@email.com"
+                   required>
 
 			<br><br>
 
@@ -49,20 +52,20 @@
 
             <br><br>
 
-            <label for="username">Username:</label>
+            <label for="username">Username: </label>
 			<input id="username"
                    name="user"
                    type='text'
                    autocomplete="username"
-                   pattern="[a-zA-Z0-9_]{4, 8}"
-                   title="4-8 characters.">
+                   pattern="[a-zA-Z0-9_]{4,8}"
+                   title="4-8 characters (letters, numbers, & underscores.">
 			<br><br>
 
-			<label for="password">Password:</label>
+			<label for="password">Password: </label>
 			<input id="password"
                    name="userPass"
                    type="password"
-                   > <br>
+                   required> <br>
 			<p id="passwordMessage"></p>
             <label for="passwordStrength">Strength: </label>
             <div id="passwordStrength"></div>

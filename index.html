@@ -9,7 +9,7 @@
 </head>
 	<body>
 		<h1>Comment Submission Form</h1>
-		<form id="submissionForm" onsubmit="displayComment(event)" action="process.php" method="post" >
+		<form id="submissionForm" action="process.php" method="post" >
             <label for="name">Name: </label>
             <input id="name"
                    type="text"
@@ -57,8 +57,9 @@
                    name="user"
                    type='text'
                    autocomplete="username"
-                   pattern="[a-zA-Z0-9_]{4,8}"
-                   title="4-8 characters (letters, numbers, & underscores.">
+                   pattern="[a-zA-Z0-9_]{4,20}"
+                   title="4-20 characters (letters, numbers, & underscores.">
+            <p id="usernameMessage"></p>
 			<br><br>
 
 			<label for="password">Password: </label>
@@ -70,6 +71,7 @@
             <label for="passwordStrength">Strength: </label>
             <div id="passwordStrength"></div>
 
+            <br><br>
 			<button type="submit">Submit</button>
 		</form>
 

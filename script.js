@@ -10,7 +10,7 @@ document.getElementById('submissionForm').addEventListener("submit", function(ev
   }
 });
 
-// Name varification
+// Name verification
 document.getElementById('name').addEventListener('input', function() {
    let name = this.value;
    const missing = [];
@@ -30,7 +30,7 @@ document.getElementById('name').addEventListener('input', function() {
     if (missing.length > 0) {
         output = "<strong>Missing: </strong>";
         for (let i = 0; i < missing.length - 1; i++)
-            output += missing[missing.length] + ", ";
+            output += missing[i] + ", ";
         output += missing[missing.length - 1];
     }
     document.getElementById('nameMessage').innerHTML += output;
@@ -71,20 +71,23 @@ document.getElementById('password').addEventListener("input", function() {
     if (missing.length > 0) {
         output = "<strong>Missing: </strong>";
         for (let i = 0; i < missing.length - 1; i++)
-            output += missing[missing.length] + ", ";
+            output += missing[i] + ", ";
         output += missing[missing.length - 1];
     }
     document.getElementById('passwordMessage').innerHTML = output;
 
     let passStrength = "";
-    if (password.length < 8) {
+    if (password.length < 8 || password.length === 0) {
         passStrength = "Weak";
+        document.getElementById("passwordStrength").style.color = "red";
     }
     else if (password.length === 8) {
         passStrength = "Medium";
+        document.getElementById("passwordStrength").style.color = "orange";
     }
     else {
         passStrength = "Strong";
+        document.getElementById("passwordStrength").style.color = "green";
     }
 
     document.getElementById('passwordStrength').textContent = passStrength;
@@ -92,15 +95,16 @@ document.getElementById('password').addEventListener("input", function() {
 
 });
 
-function escapeHTML(str) {
+/*function escapeHTML(str) {
     return str.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
+}*/
 
 function escapeHTMLInput(input) {
-    return input.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return input.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/&/g, "&amp;"
+        .replace(/"/g, "&quot;").replace(/'/g, "&#029;"));
 }
 
-function displayComment(event) {
+/*function displayComment(event) {
     event.preventDefault();
     let userInput = document.getElementById("comment").value;
     let commentDiv = document.getElementById("comments");
@@ -110,20 +114,20 @@ function displayComment(event) {
 
     newComment.innerHTML = escapeHTML(userInput);
     commentDiv.appendChild(newComment);
-}
+}*/
 
 // username
 document.getElementById('username').addEventListener('input', function() {
    const username = this.value;
    const message = document.getElementById('usernameMessage');
-   const need = /^[a-zA-Z0-9_]{4,8}$/;
+   const need = /^[a-zA-Z0-9_]{4,20}$/;
 
    if (need.test(username)) {
        message.textContent = "Valid";
        message.style.color = "green";
    }
    else {
-       message.textContent = "Invalid: Username 4-8 characters (letters, numbers, & underscores)";
+       message.textContent = "Invalid: Username 4-20 characters (letters, numbers, & underscores)";
        message.style.color = "red";
    }
 });

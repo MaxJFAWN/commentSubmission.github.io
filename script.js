@@ -1,14 +1,14 @@
 document.addEventListener('DOMContentLoaded', function(){
-// Password
+// username not in password
 document.getElementById('submissionForm').addEventListener("submit", function(event) {
   const password = document.getElementById('password').value;
   const username = document.getElementById('username').value;
 
   if (password.includes(username)) {
     event.preventDefault();
-    alert("Your password cannot contain your username.");
+    alert("Your password cannot contain your username."); // added from notes
   }
-});
+}); // taken from sign me up, not neccessary
 
 // Name verification
 document.getElementById('name').addEventListener('input', function() {
@@ -77,7 +77,7 @@ document.getElementById('password').addEventListener("input", function() {
     document.getElementById('passwordMessage').innerHTML = output;
 
     let passStrength = "";
-    if (password.length < 8 || password.length === 0) {
+    if (password.length < 8 || !password) {
         passStrength = "Weak";
         document.getElementById("passwordStrength").style.color = "red";
     }
@@ -100,8 +100,8 @@ document.getElementById('password').addEventListener("input", function() {
 }*/
 
 function escapeHTMLInput(input) {
-    return input.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/&/g, "&amp;"
-        .replace(/"/g, "&quot;").replace(/'/g, "&#029;"));
+    return input.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/&/g, "&amp;")
+        .replace(/"/g, "&quot;").replace(/'/g, "&#029;");
 }
 
 /*function displayComment(event) {
@@ -149,9 +149,14 @@ document.getElementById('submissionForm').addEventListener('submit', function (e
         username: escapeHTMLInput(username),
         password: escapeHTMLInput(password)
     }
+    //console.log(sanitizedData);
+    const form = document.getElementById('submissionForm');
+    const submitMessage = document.createElement('p');
+    submitMessage.textContent = "Data successfully submitted.";
+    submitMessage.style.color = "green";
 
+    form.parentNode.replaceChild(submitMessage, form);
     });
-
 
 
 });
